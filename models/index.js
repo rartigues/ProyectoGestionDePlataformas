@@ -14,7 +14,7 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config,
     {
       ssl: false,
-      dialect: 'postgres',
+      dialect: 'mysql',
       dialectOptions: {
         ssl: {
           require: false,
@@ -32,7 +32,7 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config,
     {
       ssl: false,
-      dialect: 'postgres',
+      dialect: 'mysql',
       dialectOptions: {
         ssl: {
           require: false,

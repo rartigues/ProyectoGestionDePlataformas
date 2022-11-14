@@ -3,13 +3,8 @@ module.exports = {
   getAllUsers: async (_req, res) => {
     
 
-    // User.findAll().then(users => {
-    //   res.status(200).send(users);
-    // })
-    // .catch(error => res.status(400).send(error));
-  
     User.findAll({
-      attributes: ["id", "firstName", "lastName", "email"],
+      attributes: ["id", "correo", "nombre", "apellido", "telefono"],
       // limit: 5,
       order: [["id", "ASC"]],
     })
@@ -25,14 +20,16 @@ module.exports = {
   async createUser(req, res) {
     try {
       const user = await User.create({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
+        correo: req.body.correo,
+        password: req.body.password,
+        nombre: req.body.nombre,
+        apellido: req.body.apellido,
+        telefono: req.body.telefono,
       });
       res.status(200).send(user);
     } catch (error) {
       console.log(error);
-      res.status(500).send(error);
+      res.status(500).send(error.message);
     }
   },
 };

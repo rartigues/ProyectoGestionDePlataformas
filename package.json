@@ -2,28 +2,41 @@
   "name": "entregajavascript6e",
   "version": "1.0.0",
   "description": "Por Roberto Artigues",
-  "main": "./index.js",
-  "dependencies": {
-    "@popperjs/core": "^2.11.2",
-    "bootstrap": "^5.1.3",
-    "browserify": "^17.0.0",
-    "jquery": "^3.6.0",
-    "jsclass-serializer": "^0.2.5",
-    "toastr": "^2.1.4",
-    "watchify": "^4.0.0"
-  },
+  "main": "app.js",
   "scripts": {
-    "build": "./node_modules/.bin/browserify ./js/default.js -o dist/bundle.js",
-    "watch": "watchify ./js/default -o dist/bundle.js -v"
+    "start": "babel-node app.js --exec",
+    "dev": "nodemon app.js",
+    "devbabel": "nodemon app.js --exec babel-node",
+    "db:create": "sequelize-cli db:create",
+    "db:migrate": "sequelize-cli db:migrate",
+    "db:g:seed": "sequelize-cli seed:generate --name",
+    "db:seeds": "sequelize-cli db:seed:all"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rartigues/EntregaJavaScript6E.git"
-  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/rartigues/EntregaJavaScript6E/issues"
+  "dependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.19.1",
+    "@babel/node": "^7.19.1",
+    "@babel/preset-env": "^7.19.1",
+    "connect-history-api-fallback": "^2.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "fs": "^0.0.1-security",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7",
+    "pg": "^8.8.0",
+    "sequelize": "^6.23.0",
+    "sequelize-cli": "^6.4.1"
   },
-  "homepage": "https://github.com/rartigues/EntregaJavaScript6E#readme"
+  "devDependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.19.1",
+    "@babel/node": "^7.19.1",
+    "@babel/preset-env": "^7.19.1",
+    "eslint": "^8.26.0",
+    "eslint-plugin-vue": "^9.6.0"
+  }
 }

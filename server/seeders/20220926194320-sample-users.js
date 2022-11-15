@@ -12,19 +12,23 @@ module.exports = {
      * }], {});
      */
     await queryInterface.bulkInsert(
-      "Users",
+      "User",
       [
         {
-          firstName: "John",
-          lastName: "Doe",
-          email: "owoTest123@gmail.com",
+          correo: 'robertoartigues@hotmail.com',
+          password: '123456',
+          nombre: 'Roberto',
+          apellido: 'Artigues',
+          telefono: '+56975188700',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          firstName: "Erick",
-          lastName: "Saldivar",
-          email: "erickrico@hotmail.com",
+          correo: 'erickejemploowo@gmail.com',
+          password: '123456',
+          nombre: 'Erick',
+          apellido: 'Saldivar',
+          telefono: '+56912345678',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -34,6 +38,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete("Users", null, {});
+    await queryInterface.bulkDelete("User", null, {});
   },
 };

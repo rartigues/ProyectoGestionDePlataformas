@@ -10,7 +10,8 @@
     "db:create": "sequelize-cli db:create",
     "db:migrate": "sequelize-cli db:migrate",
     "db:g:seed": "sequelize-cli seed:generate --name",
-    "db:seeds": "sequelize-cli db:seed:all"
+    "db:seeds": "sequelize-cli db:seed:all",
+    "db:setup": "sequelize-cli db:create && sequelize-cli db:migrate"
   },
   "keywords": [],
   "author": "",

@@ -2,17 +2,20 @@
 
 <script setup>
 import TopNavbar from '../../components/TopNavbar.vue';
+import CatalogoProductos from '../../components/CatalogoProductos.vue';
 </script>
 
 <template>
   <TopNavbar />
+  <CatalogoProductos />
 </template>
 <style></style>
 
 <script>
 export default {
   components: {
-    TopNavbar
+    TopNavbar,
+    CatalogoProductos
   },
 
   computed: {},

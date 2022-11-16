@@ -21,10 +21,17 @@ export const useCatalog = defineStore('catalog-store', {
   actions: {
     async fetchProductos() {
       this.fetching = true;
-      const response = await fetch('localhost:3000/api/productos/');
+      
       try {
-        const result = await response.json();
-        this.productos = result;
+        const response = await fetch('http://127.0.0.1:3000/api/products', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        const data = await response.json();
+        this.productos = data.productos;
+        console.debug(this.productos);
       } catch (err) {
         this.productos = [];
         console.error('Error loading productos:', err);

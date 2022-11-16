@@ -8,6 +8,10 @@
   <router-view></router-view>
 </template>
 
+<style lang="scss">
+
+</style>
+
 <!-- <template>
   <header>
     <img

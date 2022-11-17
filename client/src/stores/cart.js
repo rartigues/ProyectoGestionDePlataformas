@@ -34,7 +34,7 @@ export const useCart = defineStore('cart-store', {
       const {cart} = state;
 
       return cart.reduce((total, item) => {
-        total = total + item.price;
+        total = total + item.precio;
 
         return total;
       }, 0);

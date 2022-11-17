@@ -1,3 +1,4 @@
+<!-- eslint-disable no-unused-vars -->
 <script setup>
 import {useCart} from '../stores/cart.js'
 const cart = useCart()

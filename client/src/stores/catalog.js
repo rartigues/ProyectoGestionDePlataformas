@@ -4,13 +4,15 @@ export const useCatalog = defineStore('catalog-store', {
   state: () => {
     return {
       productos: [],
+      productosGrouped: [],
       fetching: false
     }
   },
 
   getters: {
     results(state) {
-      return state.productos;
+      
+      return state.productos
     },
 
     isFetching(state) {
@@ -31,6 +33,7 @@ export const useCatalog = defineStore('catalog-store', {
         });
         const data = await response.json();
         this.productos = data.productos;
+
         console.debug(this.productos);
       } catch (err) {
         this.productos = [];

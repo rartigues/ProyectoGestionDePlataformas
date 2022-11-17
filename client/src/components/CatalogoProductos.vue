@@ -1,28 +1,22 @@
 <script setup>
 import {useCatalog} from '../stores/catalog.js';
+import {useCart} from '../stores/cart.js';
 </script>
 
 <template>
   <div class="container">
-    <div class="row">
-      <div class="col-12" style="margin-top: 5px;">
-        <h2>🧁 Nuestra seleccion de pastelitos 🧁</h2>
-      </div>
-    </div>
-    <div class="row" style="margin-top: 10px">
-      <div class="col-12">
-        <div class="card-deck">
-          <div class="card" v-for="producto in productos" :key="producto.id">
-            <img :src="producto.foto" class="card-img-top" :alt="producto.name">
-            <div class="card-body">
-              <h5 class="card-title
-              ">{{producto.marca}}</h5>
-              <p class="card-text">{{producto.nombre}}</p>
-            </div>
-            <div class="card-footer">
-              <small class="" style="justify-content: left;">${{producto.precio}}</small>
-              <!-- add small button with counter to buy -->
-              <button class="btn btn-success btn-sm" @click="addToCart(producto)" style="float: right; font-size: smaller;" >Agregar al carrito</button>
+    <h2 class="text-center" style="margin-top: 0px;padding-top: 9px;">🧁Nuestro catalogo de pastelitos<strong>🧁</strong><br /><br /></h2>
+    <div class="row product-list">
+      <div v-for="producto in productos" :key="producto.id" class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <img :src="producto.foto" class="bd-placeholder-img card-img-top" width="100%" height="225" />
+          <div class="card-body">
+            <p class="card-text">{{producto.nombre}}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary" @click="addToCart(producto)">Agregar al carrito</button>
+              </div>
+              <p class="text-muted">${{producto.precio}}</p>
             </div>
           </div>
         </div>
@@ -43,17 +37,12 @@ export default {
   methods: {
     ...mapActions(useCatalog, ['fetchProductos']),
 
-    addToCart(producto) {
-      // we'll populate this later
-      //consolelog chosen product
-      console.log(`Agregando ${producto.nombre} al carrito`)
-      console.debug(producto)
-    }
+    ...mapActions(useCart, ['addToCart'])
   },
 
   created() {
-    // when the template is created, we call this action
     this.fetchProductos();
+
   }
 };
 </script>

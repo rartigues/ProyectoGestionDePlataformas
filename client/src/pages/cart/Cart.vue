@@ -37,16 +37,23 @@ export default {
       }
       return 0;
     },
+  },
+  methods: {
     createPedido() {
       console.log(`nombre: ${this.nombre}, direccion: ${this.direccion}, ciudad: ${this.ciudad}, provincia: ${this.provincia}, pais: ${this.pais}`);
-      if (this.nombre && this.direccion && this.ciudad && this.provincia && this.pais) { 
+      if (this.nombre && this.direccion && this.ciudad && this.provincia && this.pais && this.contents.length > 0) { 
         this.$toast.success('Pedido creado con exito');
+        useCart().makeCompra(this.contents);
+        this.$router.push('/');
         return 0;
-      }      
+      }
+      if (this.contents.length === 0) {
+        this.$toast.error('⚠️ No hay productos en el carrito ⚠️');
+        return 0;
+      }
       this.$toast.error("⚠️ Complete todos los campos para continuar ⚠️");
       return false;
     }
-
   },
   data() {
     

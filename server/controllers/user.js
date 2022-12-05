@@ -26,7 +26,16 @@ module.exports = {
         apellido: req.body.apellido,
         telefono: req.body.telefono,
       });
-      res.status(200).send(user);
+      // return everything but password
+      return res.status(201).json({
+        user: {
+          id: user.id,
+          correo: user.correo,
+          nombre: user.nombre,
+          apellido: user.apellido,
+          telefono: user.telefono,
+        },
+      });
     } catch (error) {
       console.log(error);
       res.status(500).send(error.message);

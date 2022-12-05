@@ -32,4 +32,31 @@ module.exports = {
       res.status(500).send(error.message);
     }
   },
+  async checkPassword(req, res) {
+    try {
+      const user = await User.findOne({
+        where: {
+          correo: req.body.correo,
+        },
+      });
+      if (user) {
+        if (user.password === req.body.password) {
+          res.status(200).send({
+            id: user.id,
+            correo: user.correo,
+            nombre: user.nombre,
+            apellido: user.apellido,
+            telefono: user.telefono,
+          });
+        } else {
+          res.status(400).send("Contraseña incorrecta");
+        }
+      } else {
+        res.status(400).send("Usuario no encontrado");
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(500).send(error.message);
+    }
+  },
 };

@@ -5,6 +5,7 @@ import { BootstrapVue3 } from 'bootstrap-vue-3'
 import VueNavigationBar from 'vue-navigation-bar';
 import 'vue-navigation-bar/dist/vue-navigation-bar.css';
 
+import Toaster from "@meforma/vue-toaster";
 
 import createRouter from './pages/routes.js'
 import App from './App.vue'
@@ -19,6 +20,7 @@ const app = createApp(App)
 app.use(store)
 app.use(router)
 app.use(BootstrapVue3)
+app.use(Toaster, { position: "top-right", duration: 2500 });
 app.component('vue-navigation-bar', VueNavigationBar);
 
 app.mount('#app')

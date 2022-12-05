@@ -1,7 +1,7 @@
 const Compra = require('../models').Compra;
 const LineaCompra = require('../models').LineaCompra;
-const Producto = require('../models').Producto;
-const User = require('../models').User;
+// const Producto = require('../models').Producto;
+// const User = require('../models').User;
 
 module.exports = {
     create(req, res) {
@@ -21,8 +21,9 @@ module.exports = {
                         productoId: req.body.lineasCompra[i].productoId,
                         cantidad: req.body.lineasCompra[i].cantidad,
                         total: req.body.lineasCompra[i].total
+                    // eslint-disable-next-line no-unused-vars
                     }).then(lineaCompra => {
-                        console.log(lineaCompra);
+                        // console.log(lineaCompra);
                         //todo  Update stock
                         // Producto.findByPk(req.body.lineasCompra[i].productoId).then(producto => {
                         //     console.log(producto);

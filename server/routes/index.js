@@ -1,5 +1,6 @@
 const userController = require("../controllers/user");
 const productoController = require("../controllers/producto");
+const compraController = require("../controllers/compra");
 
 module.exports = (app) => {
   app.get("/api", (req, res) => {
@@ -12,4 +13,6 @@ module.exports = (app) => {
   app.post("/api/users/", userController.createUser);
 
   app.get("/api/products/", productoController.getAllProducts);
+
+  app.post("/api/compras/", compraController.create);
 };  

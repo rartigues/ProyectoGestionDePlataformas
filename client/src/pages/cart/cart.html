@@ -42,7 +42,7 @@
                                                     </div>
                                                 </th>
                                                 <td class="border-0 align-middle">
-                                                    <strong>{{ item.precio }}</strong>
+                                                    <strong>{{ currency.symbol }} {{ item.precio }}</strong>
                                                 </td>
                                                 <td class="border-0 align-middle">
                                                     <strong>{{ item.quantity }}</strong>
@@ -56,47 +56,44 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <li class="list-group-item d-flex justify-content-between bg-light align-middle">
-                                    <div class="text-success">
-                                        <h6 class="my-0">Promo code</h6>
-                                        <small>{{promo.code}}</small>
-                                    </div>
-                                    <span class="text-success">−{{currency.symbol}}{{promo.value}}</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                    <span>Total ({{currency.name}})</span>
-                                    <strong>{{currency.symbol}}{{total}}</strong>
-                                </li>
                             </div>
                         </div>
                         
 
                         <div class="row py-5 p-4 bg-white rounded shadow-sm">
                             <div class="col-lg-6">
-                                <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Coupon code</div>
+                                <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Resumen de la orden </div>
                                 <div class="p-4">
-                                    <p class="font-italic mb-4">If you have a coupon code, please enter it in the box below</p>
-                                    <div class="input-group mb-4 border rounded-pill p-2"><input class="form-control border-0" type="text" placeholder="Apply coupon" aria-describedby="button-addon3" />
-                                        <div class="input-group-append border-0"><button id="button-addon3" class="btn btn-dark px-4 rounded-pill" type="button"><i class="fa fa-gift mr-2"></i>Apply coupon</button></div>
-                                    </div>
-                                </div>
-                                <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Instructions for seller</div>
-                                <div class="p-4">
-                                    <p class="font-italic mb-4">If you have some information for the seller you can leave them in the box below</p><textarea class="form-control" name cols="30" rows="2"></textarea>
+                                    <!-- <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p> -->
+                                    <ul class="list-unstyled mb-4">
+                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Subtotal </strong><strong>{{currency.symbol}}{{subtotal}}</strong></li>
+                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Envio</strong><strong>$1500</strong></li>
+                                        <li class="d-flex justify-content-between py-3"><strong class="text-muted"></strong><strong></strong></li>
+                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
+                                            <h5 class="font-weight-bold">{{currency.symbol}}{{total}}</h5>
+                                        </li>
+                                    <button class="btn btn-dark rounded-pill py-2 btn-block" @click="createPedido">Completar compra</button>
+                                    </ul>
                                 </div>
                             </div>
                             <div class="col-lg-6">
-                                <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Order summary </div>
+                                <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Datos de envio</div>
                                 <div class="p-4">
-                                    <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p>
-                                    <ul class="list-unstyled mb-4">
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Order Subtotal </strong><strong>$390.00</strong></li>
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Shipping and handling</strong><strong>$10.00</strong></li>
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tax</strong><strong>$0.00</strong></li>
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
-                                            <h5 class="font-weight-bold">$400.00</h5>
-                                        </li>
-                                    </ul><a class="btn btn-dark rounded-pill py-2 btn-block" href="#">Procceed to checkout</a>
+                                    <div class="input-group mb-4 border rounded-pill p-2">
+                                        <input class="form-control border-0" type="text" placeholder="Nombre y Apellido" aria-describedby="button-addon3" v-model="nombre" />
+                                    </div>
+                                    <div class="input-group mb-4 border rounded-pill p-2">
+                                        <input class="form-control border-0" type="text" placeholder="Direccion" aria-describedby="button-addon3" v-model="direccion" />
+                                    </div>
+                                    <div class="input-group mb-4 border rounded-pill p-2">
+                                        <input class="form-control border-0" type="text" placeholder="Ciudad" aria-describedby="button-addon3" v-model="ciudad" />
+                                    </div>
+                                    <div class="input-group mb-4 border rounded-pill p-2">
+                                        <input class="form-control border-0" type="text" placeholder="Provincia" aria-describedby="button-addon3" v-model="provincia" />
+                                    </div>
+                                    <div class="input-group mb-4 border rounded-pill p-2">
+                                        <input class="form-control border-0" type="text" placeholder="Pais" aria-describedby="button-addon3" v-model="pais" />
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -38,6 +38,11 @@ module.exports = {
       });
     } catch (error) {
       console.log(error);
+      if (error.name === "SequelizeUniqueConstraintError") {
+        return res.status(409).json({
+          message: "Email already in use",
+        });
+      }
       res.status(500).send(error.message);
     }
   },

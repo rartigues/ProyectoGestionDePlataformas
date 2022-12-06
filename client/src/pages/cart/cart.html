@@ -64,7 +64,6 @@
                             <div class="col-lg-6">
                                 <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Resumen de la orden </div>
                                 <div class="p-4">
-                                    <!-- <p class="font-italic mb-4">Shipping and additional costs are calculated based on values you have entered.</p> -->
                                     <ul class="list-unstyled mb-4">
                                         <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Subtotal </strong><strong>{{currency.symbol}}{{subtotal}}</strong></li>
                                         <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Envio</strong><strong>$1500</strong></li>
@@ -72,7 +71,15 @@
                                         <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Total</strong>
                                             <h5 class="font-weight-bold">{{currency.symbol}}{{total}}</h5>
                                         </li>
-                                    <button class="btn btn-dark rounded-pill py-2 btn-block" @click="createPedido">Completar compra</button>
+                                    <!-- if user is not logged, take to login -->
+                                    <li v-if="!isLoggedIn" class="d-flex justify-content-between py-3 border-bottom">
+                                        <strong class="text-muted">Inicia sesión para comprar</strong>
+                                        <router-link to="/login" class="btn btn-primary">Iniciar sesión</router-link>
+                                    </li>
+                                    <!-- if user is logged, take to checkout -->
+                                    <li v-else class="d-flex justify-content-between py-3 border-bottom">
+                                        <button class="btn btn-dark rounded-pill py-2 btn-block" @click="createPedido">Completar compra</button>
+                                    </li>
                                     </ul>
                                 </div>
                             </div>

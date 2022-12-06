@@ -1,6 +1,8 @@
 <script setup>
 import {useCatalog} from '../stores/catalog.js';
 import {useCart} from '../stores/cart.js';
+import {useUser} from '../stores/user.js';
+
 </script>
 
 <template>
@@ -14,9 +16,10 @@ import {useCart} from '../stores/cart.js';
             <p class="card-text">{{producto.nombre}}</p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary" @click="addToCart(producto)">Agregar al carrito</button>
+                <button v-if="isLoggedIn" type="button" class="btn btn-sm btn-outline-secondary" @click="addToCart(producto)">Agregar al carrito</button>
+                <router-link v-else to="/login/" class="btn btn-sm btn-outline-secondary" role="button" href="#">Agregar al carrito</router-link>
               </div>
-              <p class="text-muted">${{producto.precio}}</p>
+              <p class="text-muted" style="padding-top: 10px">${{producto.precio}}</p>
             </div>
           </div>
         </div>
@@ -31,7 +34,8 @@ import { mapState, mapActions } from 'pinia'
 
 export default {
   computed: {
-    ...mapState(useCatalog, {productos: 'results'})
+    ...mapState(useCatalog, {productos: 'results'}),
+    ...mapState(useUser, {isLoggedIn: 'isLoggedIn'})
   },
 
   methods: {

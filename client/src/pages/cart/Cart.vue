@@ -3,8 +3,10 @@
 import TopNavbar from '../../components/TopNavbar.vue';
 import BottonFooter from '../../components/BottonFooter.vue';
 import {useCart} from '../../stores/cart.js';
+import {useUser} from '../../stores/user.js';
 
-const store = useCart()
+const user = useUser();
+// const store = useCart()
 </script>
 
 
@@ -12,6 +14,7 @@ const store = useCart()
 
 
 <script>
+// eslint-disable-next-line no-unused-vars
 import { mapState, mapActions } from 'pinia'
 export default {
   components: {
@@ -37,6 +40,10 @@ export default {
       }
       return 0;
     },
+    ...mapState(useUser, {
+        user: 'getUser',
+        isLoggedIn: 'isLoggedIn'
+      })
   },
   methods: {
     createPedido() {

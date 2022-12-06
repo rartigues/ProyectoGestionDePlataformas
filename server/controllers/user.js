@@ -26,7 +26,48 @@ module.exports = {
         apellido: req.body.apellido,
         telefono: req.body.telefono,
       });
-      res.status(200).send(user);
+      // return everything but password
+      return res.status(201).json({
+        user: {
+          id: user.id,
+          correo: user.correo,
+          nombre: user.nombre,
+          apellido: user.apellido,
+          telefono: user.telefono,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+      if (error.name === "SequelizeUniqueConstraintError") {
+        return res.status(409).json({
+          message: "Email already in use",
+        });
+      }
+      res.status(500).send(error.message);
+    }
+  },
+  async checkPassword(req, res) {
+    try {
+      const user = await User.findOne({
+        where: {
+          correo: req.body.correo,
+        },
+      });
+      if (user) {
+        if (user.password === req.body.password) {
+          res.status(200).send({
+            id: user.id,
+            correo: user.correo,
+            nombre: user.nombre,
+            apellido: user.apellido,
+            telefono: user.telefono,
+          });
+        } else {
+          res.status(400).send("Contraseña incorrecta");
+        }
+      } else {
+        res.status(400).send("Usuario no encontrado");
+      }
     } catch (error) {
       console.log(error);
       res.status(500).send(error.message);

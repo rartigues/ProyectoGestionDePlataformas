@@ -25,7 +25,7 @@ export const useCatalog = defineStore('catalog-store', {
       this.fetching = true;
       
       try {
-        const response = await fetch('http://127.0.0.1:3000/api/products', {
+        const response = await fetch('http://localhost:3000/api/products', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'

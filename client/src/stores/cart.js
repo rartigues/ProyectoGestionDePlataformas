@@ -62,7 +62,7 @@ export const useCart = defineStore('cart-store', {
         });
 
         // console.log(JSON.stringify(lineasCompra));
-        const response = await fetch('http://127.0.0.1:3000/api/compras', {
+        const response = await fetch('http://localhost:3000/api/compras', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
